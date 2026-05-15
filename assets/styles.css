@@ -1,0 +1,73 @@
+/* Custom styles for the PMP simulator */
+
+* { -webkit-tap-highlight-color: transparent; }
+html { scroll-behavior: smooth; }
+body { font-family: 'Inter', system-ui, sans-serif; }
+
+/* Custom scrollbar */
+::-webkit-scrollbar { width: 10px; height: 10px; }
+::-webkit-scrollbar-track { background: transparent; }
+::-webkit-scrollbar-thumb { background: rgba(100,116,139,.4); border-radius: 8px; }
+::-webkit-scrollbar-thumb:hover { background: rgba(100,116,139,.7); }
+
+/* Glass effect */
+.glass {
+  background: rgba(255,255,255,.7);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+}
+.dark .glass {
+  background: rgba(15,23,42,.75);
+}
+
+/* Smooth transitions for choice cards */
+.choice-card {
+  transition: all .2s cubic-bezier(.4,0,.2,1);
+}
+.choice-card:hover { transform: translateY(-2px); }
+
+/* Progress ring */
+.progress-ring {
+  transform: rotate(-90deg);
+  transition: stroke-dashoffset .35s ease;
+}
+
+/* Gradient text */
+.gradient-text {
+  background: linear-gradient(135deg, #6366f1 0%, #8b5cf6 50%, #ec4899 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+/* Print styles */
+@media print {
+  .no-print { display: none !important; }
+}
+
+/* Reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: .01ms !important;
+    transition-duration: .01ms !important;
+  }
+}
+
+/* Mobile-friendly tap targets */
+button, [role="button"] { min-height: 44px; }
+
+/* Question text */
+.question-text {
+  line-height: 1.7;
+}
+
+/* Loading shimmer */
+@keyframes shimmer {
+  0% { background-position: -1000px 0; }
+  100% { background-position: 1000px 0; }
+}
+.shimmer {
+  background: linear-gradient(90deg, transparent, rgba(99,102,241,.08), transparent);
+  background-size: 1000px 100%;
+  animation: shimmer 2s infinite;
+}
