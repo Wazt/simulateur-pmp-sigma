@@ -23,7 +23,7 @@ pmp-exam-app/
     ├── main.jsx                ← Montage React
     ├── App.jsx                 ← Routeur / machine d'états
     ├── data/
-    │   ├── questions.js        ← Banque de 180 questions PMP en français
+    │   ├── questions.js        ← Banque de 430 questions PMP en français
     │   └── knowledge.js        ← Base de connaissances PMBOK 7 + Agile
     ├── utils/
     │   ├── helpers.js          ← Utilitaires (temps, shuffle, persistance)
@@ -77,9 +77,11 @@ Puis ouvrez **http://localhost:8080** dans votre navigateur.
 
 ## 📚 Sources
 
-- *PMBOK Guide* 7th Edition (Project Management Institute)
+- *PMBOK Guide* 6th & 7th Edition (Project Management Institute)
 - *Agile Practice Guide* (PMI + Agile Alliance)
 - Questions issues d'examens réels en français + générées selon les principes PMI
+
+Banque actuelle : **430 questions** (PMBOK 7 : 213 • PMBOK 6 : 217) — domaines Process / People / Business, approches Prédictive / Agile / Hybride.
 
 ## ⚖️ Mentions
 

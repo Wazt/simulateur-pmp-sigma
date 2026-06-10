@@ -6,7 +6,7 @@ function Home({ onStart }) {
       id: 'exam',
       icon: '🎯',
       title: 'Examen Officiel',
-      subtitle: '180 questions • 230 min • 2 pauses',
+      subtitle: '430 questions • 230 min • 2 pauses',
       desc: 'Reproduit les conditions réelles du PMP : timer chronométré, 2 pauses obligatoires (après Q60 et Q120), pas de retour arrière après soumission de section.',
       gradient: 'from-brand-600 via-indigo-600 to-purple-600',
       action: () => onStart('exam')

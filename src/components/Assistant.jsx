@@ -39,9 +39,20 @@ function Assistant({ onHome }) {
         }
       });
       const extracted = (data.text || '').trim();
-      setText(extracted);
-      setOcrStatus(`✓ ${extracted.length} caractères extraits`);
-      if (extracted.length > 10) search(extracted);
+      // Nettoyage du bruit OCR : caractères invisibles, labels UI isolés, pagination, espaces multiples
+      const cleaned = extracted
+        .replace(/[​-‍﻿]/g, '')
+        .replace(/^[A-Z0-9]{1,2}$/gm, '')
+        .replace(/\b\d+\s*\/\s*\d+\b/g, '')
+        .replace(/\s{3,}/g, ' ')
+        .trim();
+      setText(cleaned);
+      if (cleaned.length < 30) {
+        setOcrStatus('⚠️ Texte extrait trop court — vérifiez la capture ou collez le texte manuellement.');
+        return;
+      }
+      setOcrStatus(`✓ ${cleaned.length} caractères extraits`);
+      search(cleaned);
     } catch (e) {
       setOcrStatus('❌ Erreur OCR. Essayez de coller le texte manuellement.');
       console.error(e);
@@ -70,7 +81,7 @@ function Assistant({ onHome }) {
         <button onClick={onHome} className="text-xs px-3 py-2 rounded-lg bg-slate-200 dark:bg-slate-800 font-semibold">← Accueil</button>
       </div>
       <p className="text-sm text-slate-600 dark:text-slate-400 mb-6">
-        Collez une question PMP (texte), ou téléversez une capture d'écran. L'assistant cherche dans la banque de 180 questions et la base de connaissances PMBOK 7 / Agile Practice Guide pour vous proposer la réponse la plus probable et son explication.
+        Collez une question PMP (texte), ou téléversez une capture d'écran. L'assistant cherche dans la banque de 430 questions et la base de connaissances PMBOK 7 / Agile Practice Guide pour vous proposer la réponse la plus probable et son explication.
       </p>
 
       {/* Input area */}
@@ -151,8 +162,20 @@ function AssistantResult({ result, id }) {
 
         {!bestMatch && (
           <p className="text-sm text-slate-600 dark:text-slate-400">
-            Aucune correspondance trouvée dans la banque. Essayez avec plus de mots-clés (concepts PMP : risque, sprint, partie prenante, etc.).
+            Aucune correspondance fiable trouvée dans la banque — plutôt que de proposer une réponse hasardeuse, consultez les concepts PMP pertinents ci-dessous. Essayez aussi avec plus de mots-clés (risque, sprint, partie prenante, etc.) ou une capture plus nette.
           </p>
+        )}
+
+        {result.ambiguous && (
+          <div className="mt-2 p-3 rounded-lg bg-amber-50 dark:bg-amber-950/40 border border-amber-300 dark:border-amber-800 text-amber-700 dark:text-amber-300 text-sm font-medium">
+            ⚠️ Correspondance ambiguë — plusieurs questions de la banque sont très proches. Vérifiez aussi les « Questions similaires » ci-dessous avant de conclure.
+          </div>
+        )}
+
+        {bestMatch && confidence < 40 && (
+          <div className="mt-2 p-3 rounded-lg bg-rose-50 dark:bg-rose-950/40 border border-rose-300 dark:border-rose-800 text-rose-700 dark:text-rose-300 text-sm font-medium">
+            ⚠️ Confiance faible — l'OCR a peut-être mal lu l'image. Réessayez avec une capture plus nette ou collez le texte manuellement.
+          </div>
         )}
 
         {bestMatch && (
