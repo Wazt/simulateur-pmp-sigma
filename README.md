@@ -8,6 +8,7 @@ Application web complète pour s'entraîner à l'examen PMP en conditions réell
 - **⚡ Mini-examen** : 60 questions / 75 min, pour un entraînement rapide
 - **📚 Mode Étude** : sans timer, explication immédiate après chaque question
 - **🤖 Assistant PMP** : collez du texte ou téléversez une capture d'écran (OCR français + anglais via Tesseract.js) ; l'assistant cherche la réponse dans la banque et la base de connaissances
+- **🎓 Questions Exam réel** : banque dédiée de 151 questions issues d'un vrai examen PMP, avec réponses et explications établies exclusivement à partir des guides officiels (PMBOK 6, PMBOK 7, Guide de pratique Agile) et référence citée par question ; gère les questions à 2 ou 3 réponses
 - **📊 Statistiques détaillées** : score global + par domaine (Personnes / Processus / Environnement) + par approche (Prédictif / Agile / Hybride)
 - **🔖 Marquage et navigation** : marquer des questions, naviguer dans la grille, revenir avant soumission de section
 - **📖 Révision complète** : revoir chaque question avec réponse correcte et explication détaillée
@@ -24,6 +25,7 @@ pmp-exam-app/
     ├── App.jsx                 ← Routeur / machine d'états
     ├── data/
     │   ├── questions.js        ← Banque de 430 questions PMP en français
+    │   ├── realQuestions.js    ← Banque « Questions Exam réel » (151 questions sourcées)
     │   └── knowledge.js        ← Base de connaissances PMBOK 7 + Agile
     ├── utils/
     │   ├── helpers.js          ← Utilitaires (temps, shuffle, persistance)

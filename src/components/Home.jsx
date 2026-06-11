@@ -37,6 +37,15 @@ function Home({ onStart }) {
       desc: 'Colle une question, ou téléverse une capture d\'écran. L\'assistant retrouve la réponse et l\'explication basées sur la banque de connaissances PMBOK 7 et Agile Guide.',
       gradient: 'from-fuchsia-500 via-violet-600 to-indigo-600',
       action: () => onStart('assistant')
+    },
+    {
+      id: 'real',
+      icon: '🎓',
+      title: 'Questions Exam réel',
+      subtitle: `${(window.PMP_REAL_QUESTIONS || []).length} questions • Issues d'un examen réel`,
+      desc: 'Banque dédiée extraite d\'un vrai examen PMP. Réponses et explications établies exclusivement à partir des guides officiels PMBOK 6, PMBOK 7 et Guide de pratique Agile, avec référence citée pour chaque question.',
+      gradient: 'from-amber-500 via-yellow-600 to-orange-600',
+      action: () => onStart('real')
     }
   ];
 

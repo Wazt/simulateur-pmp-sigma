@@ -42,6 +42,7 @@ function App() {
       {view === 'exam' && <ExamScreen mode={examMode} onFinish={handleFinish} onAbort={handleAbort} />}
       {view === 'study' && <StudyMode onHome={() => setView('home')} />}
       {view === 'assistant' && <Assistant onHome={() => setView('home')} />}
+      {view === 'real' && <RealExamMode onHome={() => setView('home')} />}
       {view === 'results' && examData && (
         <ResultsScreen data={examData}
           onReview={() => setView('review')}
